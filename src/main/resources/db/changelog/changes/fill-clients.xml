@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="2" author="demidova" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <tableIsEmpty tableName="client"/>
+        </preConditions>
+
+        <insert tableName="client">
+            <column name="full_name">Иванов Иван Иванович</column>
+            <column name="phone">2264753</column>
+        </insert>
+        <insert tableName="client">
+            <column name="full_name">Петров Петр Иванович</column>
+            <column name="phone">89807653421</column>
+        </insert>
+
+        <rollback>
+            <delete tableName="client"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

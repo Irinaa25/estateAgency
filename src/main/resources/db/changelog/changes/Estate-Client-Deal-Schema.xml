@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd ">
+
+    <changeSet id="1" author="demidova" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <not>
+                    <tableExists tableName="estate"/>
+                </not>
+                <not>
+                    <tableExists tableName="client"/>
+                </not>
+                <not>
+                    <tableExists tableName="deal"/>
+                </not>
+            </and>
+        </preConditions>
+
+        <createTable tableName="client">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="full_name" type="nvarchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(11)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="estate">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="nvarchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estate_type" type="nvarchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year_construction" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="deal">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="realtor" type="nvarchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="estate"
+                                 baseColumnNames="client_id"
+                                 constraintName="fk_estate_client_client_id"
+                                 referencedTableName="client"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="deal"
+                                 baseColumnNames="client_id"
+                                 constraintName="fk_deal_client_client_id"
+                                 referencedTableName="client"
+                                 referencedColumnNames="id"/>
+
+
+        <!--откатить изменения-->
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="estate" constraintName="fk_estate_client_client_id"/>
+            <dropForeignKeyConstraint baseTableName="deal" constraintName="fk_deal_client_client_id"/>
+            <dropTable tableName="estate"/>
+            <dropTable tableName="client"/>
+            <dropTable tableName="deal"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
