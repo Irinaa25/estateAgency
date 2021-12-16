@@ -12,7 +12,7 @@ public interface ClientService {
 
     Client addClient(ClientModel clientModel);
 
-    Client updateClient(Client client);
+    Client updateClient(Long id, ClientModel clientModel);
 
     void deleteById(Long id);
 }

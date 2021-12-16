@@ -21,4 +21,9 @@ public class Client {
 
     @NonNull
     private Long phone;
+
+    public Client(String fullName, Long phone) {
+        this.fullName = fullName;
+        this.phone = phone;
+    }
 }
