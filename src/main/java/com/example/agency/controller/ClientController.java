@@ -3,6 +3,7 @@ package com.example.agency.controller;
 import com.example.agency.dto.PageDto;
 import com.example.agency.entity.Client;
 import com.example.agency.model.ClientModel;
+import com.example.agency.model.EstateModel;
 import com.example.agency.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -33,8 +34,8 @@ public class ClientController {
     }
 
     @PutMapping
-    public ResponseEntity<Client> updateClient(@RequestBody Client client) {
-        return new ResponseEntity<>(clientService.updateClient(client), HttpStatus.OK);
+    public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody ClientModel clientModel) {
+        return new ResponseEntity<>(clientService.updateClient(id, clientModel), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
