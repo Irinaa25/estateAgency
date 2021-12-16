@@ -7,13 +7,14 @@ import com.example.agency.exception.ResourceNotFoundException;
 import com.example.agency.model.ClientModel;
 import com.example.agency.repository.ClientRepository;
 import com.example.agency.repository.EstateRepository;
+import com.example.agency.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class ClientServiceImpl {
+public class ClientServiceImpl implements ClientService {
     private final EstateRepository estateRepository;
 
     private final ClientRepository clientRepository;
@@ -40,6 +41,12 @@ public class ClientServiceImpl {
         clientRepository.save(client);
         return client;
     }
+
+    @Override
+    public Client updateClient(Client client) {
+        return null;
+    }
+
     @Override
     public Client updateClient(Long id, ClientModel clientModel) {
         if (!clientRepository.existsById(id))
