@@ -33,7 +33,7 @@ public class ClientController {
         return new ResponseEntity<>(clientService.addClient(clientModel), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody ClientModel clientModel) {
         return new ResponseEntity<>(clientService.updateClient(id, clientModel), HttpStatus.OK);
     }

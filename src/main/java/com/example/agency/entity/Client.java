@@ -16,7 +16,7 @@ public class Client {
     private Long id;
 
     @NonNull
-    @Column(name = "full_name")
+    @Column(name = "fullName")
     private String fullName;
 
     @NonNull

@@ -11,7 +11,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class ClientModel {
-    @JsonProperty(value = "full_name")
+    @JsonProperty(value = "fullName")
     private String fullName;
 
     @JsonProperty(value = "phone")

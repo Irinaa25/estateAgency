@@ -14,6 +14,6 @@ public class DealModel {
     @JsonProperty(value = "realtor")
     private String realtor;
 
-    @JsonProperty(value = "clientId")
+    @JsonProperty(value = "client")
     private Long clientId;
 }

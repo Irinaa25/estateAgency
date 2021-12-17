@@ -28,7 +28,7 @@ public class EstateModel {
         @JsonProperty(value = "area")
         private int area;
 
-        @JsonProperty(value = "clientId")
+        @JsonProperty(value = "client")
         private Long clientId;
 }
 
