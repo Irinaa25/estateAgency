@@ -24,8 +24,10 @@ public class Deal {
     private Client client;
 
 
-    public Deal(String realtor, Client client) {
+    public Deal( String realtor, Client client) {
+        //this.id = id;
         this.realtor = realtor;
         this.client = client;
     }
+
 }

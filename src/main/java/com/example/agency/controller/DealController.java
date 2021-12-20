@@ -3,6 +3,7 @@ package com.example.agency.controller;
 import com.example.agency.dto.PageDto;
 import com.example.agency.entity.Deal;
 import com.example.agency.model.DealModel;
+import com.example.agency.model.EstateModel;
 import com.example.agency.service.DealService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,9 +33,9 @@ public class DealController {
         return new ResponseEntity<>(agencyService.addDeal(dealModel), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Deal> updateDeal(@RequestBody Deal deal) {
-        return new ResponseEntity<>(agencyService.updateDeal(deal), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Deal> updateDeal(@PathVariable Long id, @RequestBody DealModel dealModel) {
+        return new ResponseEntity<>(agencyService.updateDeal(id, dealModel), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

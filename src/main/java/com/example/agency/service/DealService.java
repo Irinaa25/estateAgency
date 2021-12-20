@@ -12,7 +12,7 @@ public interface DealService {
 
     Deal addDeal(DealModel dealModel);
 
-    Deal updateDeal(Deal deal);
+    Deal updateDeal(Long id, DealModel dealModel);
 
     void deleteById(Long id);
 }

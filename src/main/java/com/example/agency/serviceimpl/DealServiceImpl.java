@@ -46,10 +46,16 @@ public class DealServiceImpl implements DealService {
         return deal;
     }
     @Override
-    public Deal updateDeal(Deal deal) {
-        if (!dealRepository.existsById(deal.getId())) {
-            throw new ResourceNotFoundException("The deal with id=" + deal.getId() + " does not exist.");
+    public Deal updateDeal(Long id, DealModel dealModel) {
+        Client client = clientRepository
+                .findById(dealModel.getClientId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "The client with id=" + dealModel.getClientId() + " does not exist."));
+
+        if (!dealRepository.existsById(id)) {
+            throw new ResourceNotFoundException("The deal with id=" + id + "doesn't exist.");
         }
+        Deal deal = new Deal(id, dealModel.getRealtor(), client);
         dealRepository.save(deal);
         return deal;
     }
